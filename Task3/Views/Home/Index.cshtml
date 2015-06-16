@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/StyleWindow.css" rel="stylesheet" />
+<link href="~/Content/Center.css" rel="stylesheet" />
+<div class="outer">
+    <div class="middle">
+        <div class="inner">
+            <div style="display:block">
+                <input type="button" value="Next" onclick="location.href='@Url.Action("Dialog","Home")'" />
+                <button name="btnDialog" id="btnDialog">Dialog</button>
+            </div>
+            <div id="shadow"></div>
+            <div id="window">
+                <div id="close"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+
+        $(document).ready(function () {
+            $('#close').click(function () {
+                $('#shadow').hide();
+                $('#window').hide();
+            });
+            $('#btnDialog').click(function () {
+                $('#shadow').show();
+                $('#window').slideToggle(500);
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/PrintView",
+                    contentType: "application/html; charset=utf-8",
+                    dataType: "html",
+                    success: function (data) {
+                        $('#window').append(data);
+                    },
+                    error: function (data) {
+                        alert("You already rated this post");
+                    }
+                });
+            });
+        });
+    </script>
+}

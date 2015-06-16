@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Dialog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/Center.css" rel="stylesheet" />
+<div class="outer">
+    <div class="middle">
+        <div class="inner">
+            <button name="btnAlert" id="btnAlert">Alert</button>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#btnAlert').click(function () {
+                alert("Done!");
+            })
+        });
+    </script>
+}
